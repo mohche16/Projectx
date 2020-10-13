@@ -1,0 +1,28 @@
+body {
+  font-size: 10;
+  font-style: sans-serif;
+  width: 50%;
+  margin: 0 auto;
+  background-color: lightgray;
+}
+
+.balloon-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  padding-top: 100px;
+}
+
+.balloon {
+  background-color: red;
+  color: red;
+  font-size: 0px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.popped {
+  font-size: 50px;
+  background-color: lightgray;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--Wrapper for body-->
+    <div class="wrapper">
+      <img src="" class="displayedimage" height="50%" width="50%" />
+
+      <form class="djur-form">
+        <label for="djur-form">Välj ett djur:</label>
+        <select class="djur-dropdrown">
+          <option value="katt">Katt</option>
+          <option value="hund">Hund</option>
+          <option value="rav">Räv</option>
+        </select>
+        <button type="submit">Visa djur</button>
+      </form>
+    </div>
+    <div class="favorites">
+      <ul class="favorites-list"></ul>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

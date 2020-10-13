@@ -1,0 +1,19 @@
+body {
+  font-size: 10;
+  font-style: sans-serif;
+  width: 25%;
+  margin: 0 auto;
+  padding-top: 15%;
+}
+
+li {
+  list-style-type: none;
+  width: 100px;
+  height: 100px;
+}
+
+.favorites {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+}

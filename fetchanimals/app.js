@@ -17,23 +17,23 @@ window.onload = () => {
   fetchFox();
 };
 
-let fetchDog = () => {
-  fetch(dogApi_Url)
+async function fetchDog() {
+  await fetch(dogApi_Url)
     .then((response) => response.json())
     .then((dogObject) => (dogImage_Url = dogObject.message));
-};
+}
 
-let fetchCat = () => {
-  fetch(catApi_Url)
+async function fetchCat() {
+  await fetch(catApi_Url)
     .then((response) => response.json())
     .then((catObject) => (catImage_Url = catObject.file));
-};
+}
 
-let fetchFox = () => {
-  fetch(foxApi_Url)
+async function fetchFox() {
+  await fetch(foxApi_Url)
     .then((response) => response.json())
     .then((foxObject) => (foxImage_Url = foxObject.image));
-};
+}
 
 let displayImage = (url) => {
   image_element.src = url;
@@ -41,15 +41,21 @@ let displayImage = (url) => {
 
 form_element.addEventListener("submit", (e) => {
   e.preventDefault();
-  fetchDog();
-  fetchCat();
-  fetchFox();
   let animal_picked =
     dropdown_element.options[dropdown_element.selectedIndex].value;
 
-  if (animal_picked == "katt") displayImage(catImage_Url);
-  if (animal_picked == "hund") displayImage(dogImage_Url);
-  if (animal_picked == "rav") displayImage(foxImage_Url);
+  if (animal_picked == "katt") {
+    fetchCat();
+    displayImage(catImage_Url);
+  }
+  if (animal_picked == "hund") {
+    fetchDog();
+    displayImage(dogImage_Url);
+  }
+  if (animal_picked == "rav") {
+    fetchFox();
+    displayImage(foxImage_Url);
+  }
 });
 
 document.addEventListener("click", (e) => {

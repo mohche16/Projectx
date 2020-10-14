@@ -1,5 +1,5 @@
 let dogApi_Url = "https://dog.ceo/api/breeds/image/random";
-let catApi_Url = "http://aws.random.cat/meow";
+let catApi_Url = "https://aws.random.cat/meow";
 let foxApi_Url = "https://randomfox.ca/floof/";
 
 let dogImage_Url = "";

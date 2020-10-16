@@ -22,10 +22,12 @@ let isBalloonValidChecker = (element) => {
     !element.classList.contains("popped")
   ) {
     return true;
+  } else {
+    return false;
   }
 };
 
-let getAllPoppedBalloons = () => {
+let getAllPoppedBalloonsCount = () => {
   return document.querySelectorAll(".popped").length;
 };
 
@@ -33,7 +35,7 @@ document.addEventListener("mouseover", (e) => {
   const element = e.target;
   if (isBalloonValidChecker(element)) {
     element.classList.add("popped");
-    if (getAllPoppedBalloons() == balloon_count) {
+    if (getAllPoppedBalloonsCount() == balloon_count) {
       balloon_container.innerHTML = "YAY!";
     }
   }

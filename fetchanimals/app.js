@@ -11,12 +11,6 @@ let dropdown_element = document.querySelector(".djur-dropdrown");
 let image_element = document.querySelector(".displayedimage");
 let favorites_element = document.querySelector(".favorites-list");
 
-window.onload = () => {
-  fetchDog();
-  fetchCat();
-  fetchFox();
-};
-
 async function fetchDog() {
   await fetch(dogApi_Url)
     .then((response) => response.json())
@@ -39,21 +33,21 @@ let displayImage = (url) => {
   image_element.src = url;
 };
 
-form_element.addEventListener("submit", (e) => {
+form_element.addEventListener("submit", async (e) => {
   e.preventDefault();
   let animal_picked =
     dropdown_element.options[dropdown_element.selectedIndex].value;
 
   if (animal_picked == "katt") {
-    fetchCat();
+    await fetchCat();
     displayImage(catImage_Url);
   }
   if (animal_picked == "hund") {
-    fetchDog();
+    await fetchDog();
     displayImage(dogImage_Url);
   }
   if (animal_picked == "rav") {
-    fetchFox();
+    await fetchFox();
     displayImage(foxImage_Url);
   }
 });

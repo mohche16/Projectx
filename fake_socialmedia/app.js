@@ -84,11 +84,15 @@ document.addEventListener("click", async (e) => {
         })
         .join("");
 
+      //array med alla HTML element för singular posts från olika användare
       let allPostsArray = document.querySelectorAll(".post");
+      //Gå över varje element och kolla postid'et på class="post" och jämför med comment knapp id vi tryckte på
       allPostsArray.forEach((index) => {
         if (index.dataset.postid == postId) {
+          //Sök efter .comments container för kommentarerna och kolla om den redan har komments laddade (så att man inte hämtar in samma kommentar om och om)
           let commentsContainerEl = index.querySelector(".comments");
           if (!commentsContainerEl.querySelector(".comment"))
+            //sätt vår data i kommentar containern om den är tom
             commentsContainerEl.insertAdjacentHTML("beforeend", parsedData);
         }
       });

@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  background-color: #eee;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 33px;
+  grid-column: 1 / -1;
+  background-color: rgb(111, 111, 255);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin: 40px;
+  grid-gap: 20px;
+}
+
+.post {
+  margin: 0 0 20px 0;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 3px lightgrey;
+}
+
+.post-body {
+  margin: 0 0 20px 0;
+}
+
+.author-button {
+  float: right;
+}
+
+.comment {
+  list-style: none;
+  background-color: #eee;
+  margin: 0 30px 20px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.comment div:nth-child(2) {
+  font-weight: 100;
+}

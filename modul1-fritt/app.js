@@ -1,12 +1,12 @@
 // apikey=dcb7b7b4 / #dcb7b7b4 efter index.html i urlen
 const apiKey = location.hash.substring(1);
-const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&t=`;
+const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&t=`;
 
 //Fetch movie name by title
 let fetchMovieDataTitle = async (moviename) => {
   let dataMovie = {};
   //Fetch single object movie (not an array)
-  await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=` + moviename)
+  await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&t=` + moviename)
     .then((response) => response.json())
     .then((data) => (dataMovie = data));
   return dataMovie;
@@ -16,7 +16,7 @@ let fetchMovieDataTitle = async (moviename) => {
 let fetchMovieData = async () => {
   let dataMovie = {};
   //Fetch array of objects (movies)
-  await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=movie`)
+  await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=movie`)
     .then((response) => response.json())
     .then((data) => (dataMovie = data.Search));
   return dataMovie;

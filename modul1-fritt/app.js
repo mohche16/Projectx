@@ -64,21 +64,59 @@ window.onload = async () => {
   moviesContainerEl.innerHTML = parsedArray;
 };
 
+let filterMovieName = (array, moviename) => {
+  return array.filter((object) =>
+    object.Title.toLowerCase().includes(moviename.toLowerCase())
+  );
+};
+
 searchboxEl.addEventListener("input", async (e) => {
   //our searched movie
   let searchBoxValue = e.target.value;
+
   //if value is nothing then reset to default movie values.
   if (!searchBoxValue) {
     let movieData = await fetchMovieData();
     let parsedArray = await parseArrayToMovieList(movieData);
     moviesContainerEl.innerHTML = parsedArray;
-    return;
-  }
-  //else fetch data and set innerhtml to parsed data with single object (movie searched for)
-  let movieData = await fetchMovieDataTitle(searchBoxValue);
-
-  if (movieData.Title) {
-    let parsedArray = `
+  } else {
+    //Search 10 movie array in case it has our movie
+    let movieData10 = await fetchMovieData();
+    let filtered_array = filterMovieName(movieData10, searchBoxValue);
+    if (filtered_array[0]) {
+      if (
+        filtered_array[0].Title.toLowerCase().includes(
+          searchBoxValue.toLowerCase()
+        )
+      ) {
+        let parsedArray = `
+          <div class="movie" id=${filtered_array[0].Title}>
+          <ul>
+            <h3>Movie Title:</h3>
+            <h5 id="title">${filtered_array[0].Title}</h5>
+            <h3>Year:</h3>
+            <h5 id="year">${filtered_array[0].Year}</h5>
+            <h3>imdbID:</h3>
+            <a href="https://www.imdb.com/title/${filtered_array[0].imdbID}">
+              <h5 id="imdbID">${filtered_array[0].imdbID}</h5></a
+            >
+            <h3>Type:</h3>
+            <h5 id="Type">Movie</h5>
+            <img
+              id="poster"
+              src=${filtered_array[0].Poster}
+            />
+          </ul>
+        </div>`;
+        moviesContainerEl.innerHTML = parsedArray;
+        console.log("Used local filter");
+      }
+    }
+    if (!filtered_array[0]) {
+      //else fetch data and set innerhtml to parsed data with single object (movie searched for)
+      let movieData = await fetchMovieDataTitle(searchBoxValue);
+      if (movieData.Title) {
+        let parsedArray = `
           <div class="movie" id=${movieData.Title}>
           <ul>
             <h3>Movie Title:</h3>
@@ -97,6 +135,9 @@ searchboxEl.addEventListener("input", async (e) => {
             />
           </ul>
         </div>`;
-    moviesContainerEl.innerHTML = parsedArray;
+        moviesContainerEl.innerHTML = parsedArray;
+        console.log("Used fetch filter");
+      }
+    }
   }
 });

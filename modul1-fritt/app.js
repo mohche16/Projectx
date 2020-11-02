@@ -53,8 +53,11 @@ function parseArrayToMovieList(arraytoparse) {
 //HTML elements for movie container div and searchbox
 const moviesContainerEl = document.querySelector(".movieslist");
 const searchboxEl = document.querySelector(".searchbox-movie");
-
+const logoDivEl = document.querySelector(".logo");
 window.onload = async () => {
+  const logoEl = document.createElement("img");
+  logoEl.src = "logo.jpg";
+  logoDivEl.appendChild(logoEl);
   //Fetch movies array
   let movieData = await fetchMovieData();
   console.log(movieData);
@@ -62,6 +65,11 @@ window.onload = async () => {
   let parsedArray = await parseArrayToMovieList(movieData);
   // set container html to html with all movies loaded.
   moviesContainerEl.innerHTML = parsedArray;
+  //Check all movies
+  const AllMoviesElArray = document.querySelectorAll(".movie");
+  AllMoviesElArray.forEach((index) => {
+    console.log(index.textContent);
+  });
 };
 
 let filterMovieName = (array, moviename) => {

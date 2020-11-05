@@ -1,6 +1,6 @@
 //Textbox values
-const userName = document.querySelector("#Uname").value;
-const passWord = document.querySelector("#Pass").value;
+let userName = null;
+let passWord = null;
 
 const loginBtnEl = document.querySelector("#Log");
 const cookieImageEl = document.querySelector(".cookieImg");
@@ -17,6 +17,8 @@ const verifyLogin = () => {
   loginBtnEl.addEventListener("click", (e) => {
     e.preventDefault();
     //returns true if credentials match
+    userName = document.querySelector("#Uname").value;
+    passWord = document.querySelector("#Pass").value;
     if (verifyLogin()) {
       console.log("Login success");
       const event = new CustomEvent("login-success", { bubbles: true });

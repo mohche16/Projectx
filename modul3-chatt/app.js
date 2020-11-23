@@ -17,10 +17,10 @@
   navigator.mediaDevices
     //camera/video!
     .getUserMedia({ audio: false, video: true })
-    .then((stream) => {
+    .then(stream => {
       videoOfMeEl.muted = true;
       videoOfMeEl.srcObject = stream;
-    });
+    }).catch(error => console.error(error));
 
   // Connect to Peer server
   peer = new Peer(getPeerId, {
@@ -78,7 +78,7 @@
             videoOfThemEl.muted = true;
             videoOfThemEl.srcObject = theirStream;
           });
-        });
+        }).catch(error => console.error(error));
     });
 
     const event = new CustomEvent("peer-changed", { detail: connection.peer });
@@ -118,7 +118,6 @@
     dataConnection = peer.connect(clickedUserPeerId);
 
     dataConnection.on("open", () => {
-      console.log("opened");
       //Create and dispatch event
       const event = new CustomEvent("peer-changed", {
         detail: clickedUserPeerId,
@@ -164,7 +163,6 @@
   });
 
   document.addEventListener("peer-changed", (e) => {
-    console.log("Peer changed!");
     const peerId = e.detail;
 
     let clickedPeerEl = document.querySelector(
@@ -174,6 +172,8 @@
       .querySelectorAll(".connect-button.connected")
       .forEach((peerBtn) => peerBtn.classList.remove("connected"));
 
+    console.log("btn")
+    console.log(clickedPeerEl)
     clickedPeerEl.classList.add("connected");
 
     dataConnection.on("data", (textMessage) => {
@@ -199,7 +199,7 @@
           videoOfThemEl.muted = true;
           videoOfThemEl.srcObject = theirStream;
         });
-      });
+      }).catch(error => console.error(error));
   });
   //stop video click
   stopVideoButton.addEventListener("click", () => {
